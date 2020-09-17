@@ -1,20 +1,20 @@
-const express = require ("express")
-
-const mongoose = require ('mongoose')
-
-const routes = require('./routes')
-
-mongoose.connect("mongodb://localhost:27017/mydb",{
-    useNewUrlParser:true
-}).then(()=>{
+const express = require("express");
+const bodyParser = require("body-parser");
+const adminLoginRoute = require ('./modules/admin/admin-login/admin-login.routes')
+const registerProdRoute = require ('./modules/admin/admin.catalog/admin-catalog-routes')
+require('./databaseConfig/db');
 
 
+var app = express();
 
-const app = express()
-app.use(express.json())
-app.use("/api",routes)
 
-app.listen(5000,()=>{
-    console.log("Server is running at port 3000");
-})
-})
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+const port = process.env.port || 3001;  
+
+app.use("/admin", adminLoginRoute);
+app.use('/admin',registerProdRoute)
+app.listen(port, () => {
+    console.log("server is listening to port 3001");
+  });
