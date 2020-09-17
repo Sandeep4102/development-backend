@@ -11,7 +11,7 @@ var app = express();
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const port = process.env.port || 3001;  
+const port = process.env.PORT || 3001;  
 
 app.use("/admin", adminLoginRoute);
 app.use('/admin',registerProdRoute)
