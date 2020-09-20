@@ -21,7 +21,12 @@ const productInfo = new schema({
      description : {
         type:String,
         required:true
-    }
+    },
+    img: 
+    { 
+        data: Buffer, 
+        type: String 
+    } 
     })
 
 module.exports = mongoose.model('productDetails', productInfo);

@@ -6,7 +6,7 @@ const adminLoginSchema = require ('./admin.login.model')
 exports.adminLogin = async (req,res)=>{
     console.log(req.body,"req34567890");
     try{
-         adminLogin.create(req.body)
+         adminLoginSchema.create(req.body)
          res.send("success")
     }
     catch(error){
