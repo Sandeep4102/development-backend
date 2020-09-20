@@ -7,7 +7,7 @@ router.post('/registerProd',upload.single("image"),productController.registerPro
 
 router.get('/getProductList',productController.getProduct)
 
-router.post('/image',productController.image)
+router.get('/image/:id',productController.image)
 
 
 module.exports = router;

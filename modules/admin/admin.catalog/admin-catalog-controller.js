@@ -57,7 +57,7 @@ exports.registerProd = async (request,response)=>{
     }
 
     exports.image = async (req, res) => {
-        var user = req.body.img;
+        var user = req.params.id;
       
         gfs.files.findOne({ filename: user }, function(err, file) {
           if (!file || file.length === 0) {
