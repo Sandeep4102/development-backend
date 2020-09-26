@@ -89,11 +89,7 @@ exports.registerProd = async (request,response)=>{
         try{  
 
           console.log(req.params.id,"56t7y8");
-            
-           var result = await productInfo.findOne({_id : req.params.id},{_id:1},(err,doc)=>{
-               
-            console.log(doc,"doc"); 
-            productInfo.deleteOne({ _id: doc._id }, function(err, result) {
+            productInfo.deleteOne({ _id: req.params.id }, function(err, result) {
               if (err) {
                 res.send(err);
               } else {
@@ -101,8 +97,7 @@ exports.registerProd = async (request,response)=>{
                 console.log(result);
               }
             });
-            })
-            // res.send({docs:result})
+    
           
         }
         catch(error){
