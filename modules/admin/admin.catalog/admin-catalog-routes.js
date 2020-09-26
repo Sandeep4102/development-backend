@@ -9,5 +9,6 @@ router.get('/getProductList',productController.getProduct)
 
 router.get('/image/:id',productController.image)
 
+router.delete('/delete/:id',productController.deleteProduct)
 
 module.exports = router;

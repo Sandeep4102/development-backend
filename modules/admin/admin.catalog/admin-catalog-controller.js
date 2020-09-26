@@ -85,4 +85,29 @@ exports.registerProd = async (request,response)=>{
         });
       }
 
+      exports.deleteProduct = async (req,res)=>{
+        try{  
+
+          console.log(req.params.id,"56t7y8");
+            
+           var result = await productInfo.findOne({_id : req.params.id},{_id:1},(err,doc)=>{
+               
+            console.log(doc,"doc"); 
+            productInfo.deleteOne({ _id: doc._id }, function(err, result) {
+              if (err) {
+                res.send(err);
+              } else {
+                res.send(result);
+                console.log(result);
+              }
+            });
+            })
+            // res.send({docs:result})
+          
+        }
+        catch(error){
+         console.log(error,"error456789");
+        }
+    }
+
   
