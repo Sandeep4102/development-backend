@@ -4,6 +4,7 @@ const Grid = require("gridfs-stream");
 const path = require("path");
 
 var mongoose = require("mongoose");
+const { query } = require('express');
 const mongoURI = "mongodb+srv://sandeep:CaB7ZYjWJtQ9dxSO@cluster0.72jv6.mongodb.net/productCatalog?retryWrites=true&w=majority";
 
 // Create Mongo Connection
@@ -41,7 +42,7 @@ exports.registerProd = async (request,response)=>{
      console.log(error,"error456789");
     }
 }
-    //api to get data
+    //api to get PRODUCT
     exports.getProduct = async (req,res)=>{
         try{
             
@@ -55,6 +56,8 @@ exports.registerProd = async (request,response)=>{
          console.log(error,"error456789");
         }
     }
+
+    //API TO GET IMAGE
 
     exports.image = async (req, res) => {
         var user = req.params.id;
@@ -85,6 +88,7 @@ exports.registerProd = async (request,response)=>{
         });
       }
 
+      // API TO DELETE PRODUCT
       exports.deleteProduct = async (req,res)=>{
         try{  
 
@@ -103,6 +107,44 @@ exports.registerProd = async (request,response)=>{
         catch(error){
          console.log(error,"error456789");
         }
+    }
+
+    //API FOR POPULATING Type Of Prod
+    exports.typeOfProd =  async (req,res) =>{
+      try{
+       console.log(req,"Req");
+       await productInfo.find({},{typeOfProd:1,_id:0},(err,doc)=>{
+         if(err){
+           console.log(err,"error");
+
+         }
+         else{
+           console.log(doc,"doc");
+           res.status(200).send(doc)
+         }
+       })
+      }
+      catch(error){
+        console.log(error,"error456789");
+       }
+    }
+
+    //api to search part number
+
+    exports.searchPartNumber = async (req,res)=>{
+      try{
+       console.log(req.body);
+       var query = {
+        partNumber : req.body.partNumber
+       }
+       await productInfo.find(query,(err,doc)=>{
+           console.log(doc);
+           res.status(200).send(doc)
+       })
+      }
+      catch(error){
+        console.log(error,"error456789");
+       }
     }
 
   
