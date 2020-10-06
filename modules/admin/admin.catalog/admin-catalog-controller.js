@@ -147,4 +147,22 @@ exports.registerProd = async (request,response)=>{
        }
     }
 
+    //api to get list of product by filtering type of prod
+      
+
+    exports.searchTypeOfProd = async (req,res)=>{
+      try{
+       console.log(req.body);
+       var query = {
+        typeOfProd : req.body.typeOfProd
+       }
+       await productInfo.find(query,(err,doc)=>{
+           console.log(doc);
+           res.status(200).send(doc)
+       })
+      }
+      catch(error){
+        console.log(error,"error456789");
+       }
+    }
   

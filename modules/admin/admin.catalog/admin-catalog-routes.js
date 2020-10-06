@@ -7,6 +7,8 @@ router.post('/registerProd',upload.single("image"),productController.registerPro
 
 router.post('/searchPartNumber',productController.searchPartNumber)
 
+router.post ('/searchTypeOfProd',productController.searchTypeOfProd)
+
 router.get('/getProductList',productController.getProduct)
 
 router.get('/image/:id',productController.image)
